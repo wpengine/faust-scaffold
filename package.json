@@ -1,0 +1,21 @@
+{
+  "name": "@faustwp/blank-example",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "faust dev",
+    "build": "faust build",
+    "generate": "faust generatePossibleTypes",
+    "start": "faust start"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.7.1",
+    "@faustwp/cli": "0.1.4",
+    "@faustwp/core": "0.1.3",
+    "graphql": "^16.6.0",
+    "next": "^13.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.56.1"
+  }
+}

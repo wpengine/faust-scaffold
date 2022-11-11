@@ -1,2 +1,3 @@
-# faust-scaffold
-Lightweight scaffolding for your next headless WordPress app!
+# faust-getting-started
+
+Welcome to the experimental Faust getting started example.
