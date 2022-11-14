@@ -9,9 +9,7 @@ export default function MyApp({ Component, pageProps }) {
 
   return (
     <FaustProvider pageProps={pageProps}>
-      <div className="container">
-        <Component {...pageProps} key={router.asPath} />
-      </div>
+      <Component {...pageProps} key={router.asPath} />
     </FaustProvider>
   );
 }

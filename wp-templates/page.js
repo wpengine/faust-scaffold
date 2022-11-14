@@ -1,6 +1,7 @@
 import { gql } from "@apollo/client";
 import Link from "next/link";
 import EntryHeader from "../components/entry-header";
+import Footer from "../components/footer";
 import Header from "../components/header";
 
 export default function Component(props) {
@@ -22,8 +23,12 @@ export default function Component(props) {
         menuItems={menuItems}
       />
 
-      <EntryHeader title={title} />
-      <div dangerouslySetInnerHTML={{ __html: content }} />
+      <main className="container">
+        <EntryHeader title={title} />
+        <div dangerouslySetInnerHTML={{ __html: content }} />
+      </main>
+
+      <Footer />
     </>
   );
 }

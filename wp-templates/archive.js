@@ -2,6 +2,7 @@ import { gql } from "@apollo/client";
 import Link from "next/link";
 import Header from "../components/header";
 import EntryHeader from "../components/entry-header";
+import Footer from "../components/footer";
 
 export default function Component(props) {
   const { title: siteTitle, description: siteDescription } =
@@ -17,16 +18,20 @@ export default function Component(props) {
         menuItems={menuItems}
       />
 
-      <EntryHeader title={`Archive for ${archiveType}: ${name}`} />
+      <main className="container">
+        <EntryHeader title={`Archive for ${archiveType}: ${name}`} />
 
-      <h3>Recent Posts</h3>
-      <ul>
-        {posts.nodes.map((post) => (
-          <Link key={post.id} href={post.uri}>
-            <li>{post.title}</li>
-          </Link>
-        ))}
-      </ul>
+        <h3>Recent Posts</h3>
+        <ul>
+          {posts.nodes.map((post) => (
+            <Link key={post.id} href={post.uri}>
+              <li>{post.title}</li>
+            </Link>
+          ))}
+        </ul>
+      </main>
+
+      <Footer />
     </>
   );
 }

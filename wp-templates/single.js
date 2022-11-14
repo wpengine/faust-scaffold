@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 import EntryHeader from "../components/entry-header";
+import Footer from "../components/footer";
 import Header from "../components/header";
 export default function Component(props) {
   // Loading state for previews
@@ -20,8 +21,12 @@ export default function Component(props) {
         menuItems={menuItems}
       />
 
-      <EntryHeader title={title} date={date} author={author.node.name} />
-      <div dangerouslySetInnerHTML={{ __html: content }} />
+      <main className="container">
+        <EntryHeader title={title} date={date} author={author.node.name} />
+        <div dangerouslySetInnerHTML={{ __html: content }} />
+      </main>
+
+      <Footer />
     </>
   );
 }
