@@ -18,9 +18,7 @@ export default function Component(props) {
   return (
     <>
       <Head>
-        <title>
-          {title} - {siteTitle}
-        </title>
+        <title>{`${title} - ${siteTitle}`}</title>
       </Head>
 
       <Header

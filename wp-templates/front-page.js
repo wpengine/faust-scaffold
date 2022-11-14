@@ -4,6 +4,7 @@ import Link from "next/link";
 import Header from "../components/header";
 import EntryHeader from "../components/entry-header";
 import Footer from "../components/footer";
+import style from "../styles/front-page.module.css";
 
 export default function Component(props) {
   const { title: siteTitle, description: siteDescription } =
@@ -25,12 +26,12 @@ export default function Component(props) {
       <main className="container">
         <EntryHeader title="Welcome to the Faust Scaffold Blueprint" />
 
-        <section className="card-grid">
+        <section className={style.cardGrid}>
           <Link
             href="https://faustjs.org"
             target="_blank"
             rel="noopener noreferrer"
-            className="card"
+            className={style.card}
           >
             <h3>Documentation →</h3>
             <p>
@@ -43,7 +44,7 @@ export default function Component(props) {
             href="https://my.wpengine.com/atlas#/create/blueprint"
             target="_blank"
             rel="noopener noreferrer"
-            className="card"
+            className={style.card}
           >
             <h3>Blueprints →</h3>
             <p>Explore production ready Faust.js starter projects.</p>
@@ -53,7 +54,7 @@ export default function Component(props) {
             href="https://wpengine.com/atlas"
             target="_blank"
             rel="noopener noreferrer"
-            className="card"
+            className={style.card}
           >
             <h3>Deploy →</h3>
             <p>
@@ -66,7 +67,7 @@ export default function Component(props) {
             href="https://github.com/wpengine/faustjs"
             target="_blank"
             rel="noopener noreferrer"
-            className="card"
+            className={style.card}
           >
             <h3>Contribute →</h3>
             <p>Visit us on GitHub to explore how you can contribute!</p>

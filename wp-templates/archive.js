@@ -10,13 +10,12 @@ export default function Component(props) {
     props.data.generalSettings;
   const menuItems = props.data.primaryMenuItems.nodes;
   const { archiveType, name, posts } = props.data.nodeByUri;
+  const htmlTitle = `${archiveType}: ${name} - ${siteTitle}`;
 
   return (
     <>
       <Head>
-        <title>
-          {archiveType}: {name} - {siteTitle}
-        </title>
+        <title>{`${archiveType}: ${name} - ${siteTitle}`}</title>
       </Head>
 
       <Header
