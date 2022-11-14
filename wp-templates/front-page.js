@@ -12,6 +12,10 @@ export default function Component(props) {
 
   return (
     <>
+      <Head>
+        <title>{siteTitle}</title>
+      </Head>
+
       <Header
         siteTitle={siteTitle}
         siteDescription={siteDescription}

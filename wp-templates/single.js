@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+import Head from "next/head";
 import EntryHeader from "../components/entry-header";
 import Footer from "../components/footer";
 import Header from "../components/header";
@@ -15,6 +16,12 @@ export default function Component(props) {
 
   return (
     <>
+      <Head>
+        <title>
+          {title} - {siteTitle}
+        </title>
+      </Head>
+
       <Header
         siteTitle={siteTitle}
         siteDescription={siteDescription}
