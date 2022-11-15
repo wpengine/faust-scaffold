@@ -9,7 +9,12 @@
   border: 1px solid #e1e1e1;
   border-radius: 0.5rem;
   line-height: 1.5;
-  transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
 }
 
 .card:hover {
