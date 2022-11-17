@@ -5,7 +5,10 @@
     "dev": "faust dev",
     "build": "faust build",
     "generate": "faust generatePossibleTypes",
-    "start": "faust start"
+    "start": "faust start",
+    "lint": "faust lint",
+    "format": "prettier --write './**/*.{js,jsx,md,mdx,css,scss}'",
+    "format:check": "prettier --check './**/*.{js,jsx,md,mdx,css,scss}'"
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",
