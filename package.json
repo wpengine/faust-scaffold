@@ -9,10 +9,10 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",
-    "@faustwp/cli": "0.1.4",
-    "@faustwp/core": "0.1.3",
+    "@faustwp/cli": "0.1.6",
+    "@faustwp/core": "0.1.5",
     "graphql": "^16.6.0",
-    "next": "^13.0.2",
+    "next": "^13.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
