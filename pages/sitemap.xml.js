@@ -4,8 +4,8 @@ export default function Sitemap() {}
 
 export function getServerSideProps(ctx) {
   return getSitemapProps(ctx, {
-    sitemapIndexPath: 'wp-sitemap.xml',
     frontendUrl: process.env.NEXT_PUBLIC_SITE_URL,
-    sitemapPathsToIgnore: ['/wp-sitemap-users-*'],
+    // sitemapIndexPath: 'sitemap.xml',
+    // sitemapPathsToIgnore: ['/wp-sitemap-users-*'],
   });
 }
