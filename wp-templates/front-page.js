@@ -58,7 +58,7 @@ export default function Component(props) {
           >
             <h3>Deploy →</h3>
             <p>
-              Deploy your Faust.js app to Atlas along with your WordPress
+              Deploy your Faust.js app to Headless Platform along with your WordPress
               instance.
             </p>
           </Link>
