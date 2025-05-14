@@ -40,6 +40,10 @@ export default function Component(props) {
     return <div>Loading...</div>;
   }
 
+  if (contentQuery.error || siteDataQuery.error || headerMenuDataQuery.error) {
+    return <div>Error...</div>;
+  }
+
   const siteData = siteDataQuery?.data?.generalSettings || {};
   const menuItems = headerMenuDataQuery?.data?.primaryMenuItems?.nodes || { nodes: [] };
   const { title: siteTitle, description: siteDescription } = siteData;

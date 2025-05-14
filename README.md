@@ -70,7 +70,6 @@ At WP Engine, we have a strong community built around headless WordPress to supp
 
 ## References
 
-
 ### Faust
 - [Faust Plugin System Filters](https://faustjs.org/docs/reference/faust-plugin-system-filters/)
 - [fromThemeJson](https://faustjs.org/docs/reference/from-theme-json/)
@@ -88,7 +87,6 @@ At WP Engine, we have a strong community built around headless WordPress to supp
 - [blockset](https://faustjs.org/docs/reference/blockset/)
 
 ## Explanation
-
 
 - [Seed Query](https://faustjs.org/docs/explanation/seed-query/)
 - [GET VS POST](https://github.com/wpengine/hwptoolkit/blob/main/docs/explanation/get-vs-post.md)
