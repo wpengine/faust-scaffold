@@ -7,6 +7,9 @@ export default function Footer() {
       <a href="https://wpengine.com" target="_blank" rel="noopener noreferrer">
         WP Engine
       </a>
+      <span style={{ marginLeft: "8px" }}>
+        &copy; {new Date().getFullYear()}
+      </span>
     </footer>
   );
 }

@@ -1,4 +1,6 @@
-import { gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
+import { SITE_DATA_QUERY } from "../fragments/generalSettings";
+import { HEADER_MENU_QUERY } from "../fragments/MenuQueries";
 import Head from "next/head";
 import Link from "next/link";
 import Header from "../components/header";
@@ -7,9 +9,21 @@ import Footer from "../components/footer";
 import style from "../styles/front-page.module.css";
 
 export default function Component(props) {
-  const { title: siteTitle, description: siteDescription } =
-    props.data.generalSettings;
-  const menuItems = props.data.primaryMenuItems.nodes;
+  // Loading state for previews
+  if (props.loading) {
+    return <>Loading...</>;
+  }
+
+  const siteDataQuery = useQuery(SITE_DATA_QUERY) || {};
+  const headerMenuDataQuery = useQuery(HEADER_MENU_QUERY);
+
+  if (siteDataQuery.loading || headerMenuDataQuery.loading) {
+    return <div>Loading...</div>;
+  }
+
+  const siteData = siteDataQuery?.data?.generalSettings || {};
+  const menuItems = headerMenuDataQuery?.data?.primaryMenuItems?.nodes || { nodes: [] };
+  const { title: siteTitle, description: siteDescription } = siteData;
 
   return (
     <>
@@ -28,15 +42,15 @@ export default function Component(props) {
 
         <section className={style.cardGrid}>
           <Link
-            href="https://faustjs.org"
+            href="https://faustjs.org/docs/"
             target="_blank"
             rel="noopener noreferrer"
             className={style.card}
           >
             <h3>Documentation →</h3>
             <p>
-              Learn more about Faust.js through guides and reference
-              documentation.
+              Learn more about Faust.js through tutorials, guides and reference
+              in our documentation.
             </p>
           </Link>
 
@@ -47,19 +61,19 @@ export default function Component(props) {
             className={style.card}
           >
             <h3>Blueprints →</h3>
-            <p>Explore production ready Faust.js starter projects.</p>
+            <p>Explore production ready Faust.js starter kits.</p>
           </Link>
 
           <Link
-            href="https://wpengine.com/atlas"
+            href="https://wpengine.com/headless-wordpress/"
             target="_blank"
             rel="noopener noreferrer"
             className={style.card}
           >
             <h3>Deploy →</h3>
             <p>
-              Deploy your Faust.js app to Headless Platform along with your WordPress
-              instance.
+              Deploy your Faust.js app to Headless Platform along with your
+              WordPress instance.
             </p>
           </Link>
 
@@ -80,9 +94,11 @@ export default function Component(props) {
   );
 }
 
-Component.query = gql`
-  ${Header.fragments.entry}
-  query GetHomePage {
-    ...HeaderFragment
-  }
-`;
+Component.queries = [
+  {
+    query: SITE_DATA_QUERY,
+  },
+  {
+    query: HEADER_MENU_QUERY,
+  },
+];

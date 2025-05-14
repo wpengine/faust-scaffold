@@ -1,8 +1,19 @@
-import { gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
+import { SITE_DATA_QUERY } from "../fragments/generalSettings";
+import { HEADER_MENU_QUERY } from "../fragments/MenuQueries";
 import Head from "next/head";
 import EntryHeader from "../components/entry-header";
 import Footer from "../components/footer";
 import Header from "../components/header";
+
+const PAGE_QUERY = gql`
+  query GetPage($databaseId: ID!, $asPreview: Boolean = false) {
+    page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
+      title
+      content
+    }
+  }
+`;
 
 export default function Component(props) {
   // Loading state for previews
@@ -10,10 +21,24 @@ export default function Component(props) {
     return <>Loading...</>;
   }
 
-  const { title: siteTitle, description: siteDescription } =
-    props.data.generalSettings;
-  const menuItems = props.data.primaryMenuItems.nodes;
-  const { title, content } = props.data.page;
+  const contentQuery = useQuery(PAGE_QUERY, {
+    variables: {
+      databaseId: props?.__SEED_NODE__?.databaseId || 0,
+      asPreview: props?.__SEED_NODE__?.asPreview || false,
+    },
+  }) || {};
+  const siteDataQuery = useQuery(SITE_DATA_QUERY) || {};
+  const headerMenuDataQuery = useQuery(HEADER_MENU_QUERY);
+
+
+  if (contentQuery.loading || siteDataQuery.loading || headerMenuDataQuery.loading) {
+    return <div>Loading...</div>;
+  }
+
+  const siteData = siteDataQuery?.data?.generalSettings || {};
+  const menuItems = headerMenuDataQuery?.data?.primaryMenuItems?.nodes || { nodes: [] };
+  const { title: siteTitle, description: siteDescription } = siteData;
+  const { title, content } = contentQuery?.data?.page || {};
 
   return (
     <>
@@ -37,20 +62,18 @@ export default function Component(props) {
   );
 }
 
-Component.variables = ({ databaseId }, ctx) => {
-  return {
-    databaseId,
-    asPreview: ctx?.asPreview,
-  };
-};
-
-Component.query = gql`
-  ${Header.fragments.entry}
-  query GetPage($databaseId: ID!, $asPreview: Boolean = false) {
-    page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
-      title
-      content
-    }
-    ...HeaderFragment
+Component.queries = [
+  {
+    query: PAGE_QUERY,
+    variables: ({ databaseId }, ctx) => ({
+      databaseId,
+      asPreview: ctx?.asPreview,
+    }),
+  },
+  {
+    query: SITE_DATA_QUERY
+  },
+  {
+    query: HEADER_MENU_QUERY
   }
-`;
+];
