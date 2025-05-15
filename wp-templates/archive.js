@@ -1,13 +1,17 @@
-import { gql, useQuery } from "@apollo/client";
-import { SITE_DATA_QUERY } from "../fragments/generalSettings";
-import { HEADER_MENU_QUERY } from "../fragments/MenuQueries";
+import { gql } from "@apollo/client";
 import Link from "next/link";
 import Head from "next/head";
 import Header from "../components/header";
 import EntryHeader from "../components/entry-header";
 import Footer from "../components/footer";
+import { SITE_DATA_QUERY } from "../queries/SiteSettingsQuery";
+import { HEADER_MENU_QUERY } from "../queries/MenuQueries";
+import { POST_LIST_FRAGMENT } from "../fragments/PostListFragment";
+import PostListItem from "../components/post-list-item";
+import { useFaustQuery } from "@faustwp/core";
 
 const ARCHIVE_QUERY = gql`
+  ${POST_LIST_FRAGMENT}
   query GetArchive($uri: String!) {
     nodeByUri(uri: $uri) {
       archiveType: __typename
@@ -15,9 +19,7 @@ const ARCHIVE_QUERY = gql`
         name
         posts {
           nodes {
-            id
-            title
-            uri
+            ...PostListFragment
           }
         }
       }
@@ -25,9 +27,7 @@ const ARCHIVE_QUERY = gql`
         name
         posts {
           nodes {
-            id
-            title
-            uri
+            ...PostListFragment
           }
         }
       }
@@ -36,33 +36,26 @@ const ARCHIVE_QUERY = gql`
 `;
 
 export default function Component(props) {
+  const contentQuery = useFaustQuery(ARCHIVE_QUERY) || {};
+  const siteDataQuery = useFaustQuery(SITE_DATA_QUERY) || {};
+  const headerMenuDataQuery = useFaustQuery(HEADER_MENU_QUERY);
 
-  if (props.loading) {
-    return <>Loading...</>;
-  }
-
-  const contentQuery  = useQuery(ARCHIVE_QUERY, {
-    variables: {
-      uri: props?.__SEED_NODE__?.uri || '/',
-    },
-  }) || {};
-  const siteDataQuery = useQuery(SITE_DATA_QUERY) || {};
-  const headerMenuDataQuery = useQuery(HEADER_MENU_QUERY);
-
-  if (contentQuery.loading || siteDataQuery.loading || headerMenuDataQuery.loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (contentQuery.error || siteDataQuery.error || headerMenuDataQuery.error) {
-    return <div>Error...</div>;
-  }
-
-  const siteData = siteDataQuery?.data?.generalSettings || {};
-  const menuItems = headerMenuDataQuery?.data?.primaryMenuItems?.nodes || {
+  const siteData = siteDataQuery?.generalSettings || {};
+  const menuItems = headerMenuDataQuery?.primaryMenuItems?.nodes || {
     nodes: [],
   };
   const { title: siteTitle, description: siteDescription } = siteData;
-  const { archiveType, name, posts } = contentQuery?.data?.nodeByUri || {};
+  const { archiveType, name, posts } = contentQuery?.nodeByUri || {};
+
+  // Helper function to format date as "Month Day, Year"
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  }
 
   return (
     <>
@@ -76,17 +69,19 @@ export default function Component(props) {
         menuItems={menuItems}
       />
 
-      <main className="container">
+      <main className="container mx-auto px-4">
         <EntryHeader title={`Archive for ${archiveType}: ${name}`} />
 
-        <h3>Recent Posts</h3>
-        <ul>
-          {posts.nodes.map((post) => (
-            <Link key={post.id} href={post.uri}>
-              <li>{post.title}</li>
-            </Link>
-          ))}
-        </ul>
+        <h3 className="text-2xl font-semibold mb-6">Recent Posts</h3>
+        <div className="space-y-12">
+          {posts && posts.nodes && posts.nodes.length > 0 ? (
+            posts.nodes.map((post) => (
+              <PostListItem key={post.id} post={post} />
+            ))
+          ) : (
+            <p>No posts found.</p>
+          )}
+        </div>
       </main>
 
       <Footer />
@@ -97,9 +92,12 @@ export default function Component(props) {
 Component.queries = [
   {
     query: ARCHIVE_QUERY,
-    variables: ({ seedQuery }, ctx) => ({
-      uri: "classic"
-    }),
+    variables: ({}, ctx) => {
+      return {
+        uri: "/category/classic/", // @TODO Make this dynamic and add to getServerSideProps
+        asPreview: ctx?.asPreview || false,
+      };
+    },
   },
   {
     query: SITE_DATA_QUERY,

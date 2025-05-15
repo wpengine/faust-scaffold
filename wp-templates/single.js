@@ -1,10 +1,11 @@
-import { gql, useQuery } from "@apollo/client";
-import { SITE_DATA_QUERY } from "../fragments/generalSettings";
-import { HEADER_MENU_QUERY } from "../fragments/MenuQueries";
+import { gql } from "@apollo/client";
 import Head from "next/head";
 import EntryHeader from "../components/entry-header";
 import Footer from "../components/footer";
 import Header from "../components/header";
+import { SITE_DATA_QUERY } from "../queries/SiteSettingsQuery";
+import { HEADER_MENU_QUERY } from "../queries/MenuQueries";
+import { useFaustQuery } from "@faustwp/core";
 
 const POST_QUERY = gql`
   query GetPost($databaseId: ID!, $asPreview: Boolean = false) {
@@ -27,27 +28,13 @@ export default function Component(props) {
     return <>Loading...</>;
   }
 
-  const contentQuery = useQuery(POST_QUERY, {
-    variables: {
-      databaseId: props?.__SEED_NODE__?.databaseId || 0,
-      asPreview: props?.__SEED_NODE__?.asPreview || false,
-    },
-  }) || {};
-  const siteDataQuery = useQuery(SITE_DATA_QUERY) || {};
-  const headerMenuDataQuery = useQuery(HEADER_MENU_QUERY);
+  const contentQuery = useFaustQuery(POST_QUERY);
+  const siteDataQuery = useFaustQuery(SITE_DATA_QUERY);
+  const headerMenuDataQuery = useFaustQuery(HEADER_MENU_QUERY);
 
-  if (contentQuery.loading || siteDataQuery.loading || headerMenuDataQuery.loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (contentQuery.error || siteDataQuery.error || headerMenuDataQuery.error) {
-    return <div>Error...</div>;
-  }
-
-  const siteData = siteDataQuery?.data?.generalSettings || {};
-  const menuItems = headerMenuDataQuery?.data?.primaryMenuItems?.nodes || { nodes: [] };
-  const { title: siteTitle, description: siteDescription } = siteData;
-  const { title, content, date, author } = contentQuery?.data?.post || {};
+  const menuItems = headerMenuDataQuery?.primaryMenuItems?.nodes || { nodes: [] };
+  const { title: siteTitle, description: siteDescription } = siteDataQuery;
+  const { title, content, date, author } = contentQuery?.post || {};
 
   return (
     <>

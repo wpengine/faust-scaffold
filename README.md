@@ -66,6 +66,7 @@ At WP Engine, we have a strong community built around headless WordPress to supp
 - [Performance](https://www.wpgraphql.com/docs/performance)
 - [Debugging](https://www.wpgraphql.com/docs/debugging)
 - [Security](https://www.wpgraphql.com/docs/security)
+- [Pagination](https://www.wpgraphql.com/2020/03/26/forward-and-backward-pagination-with-wpgraphql)
 
 
 ## References
