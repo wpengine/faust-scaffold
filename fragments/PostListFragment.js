@@ -1,7 +1,7 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const POST_LIST_FRAGMENT = gql`
-fragment PostListFragment on Post {
+  fragment PostListFragment on Post {
     id
     title
     uri
@@ -21,5 +21,5 @@ fragment PostListFragment on Post {
         }
       }
     }
-}
+  }
 `;

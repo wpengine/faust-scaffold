@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const SITE_DATA_QUERY = gql`
   query GetSiteData {

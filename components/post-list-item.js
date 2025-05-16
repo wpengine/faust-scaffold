@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FeaturedImage } from "./featured-image";
-import styles from '../styles/post-list-item.module.css';
+import styles from "../styles/post-list-item.module.css";
 
 export default function PostListItem({ post }) {
   const { title, excerpt, uri, date } = post;
@@ -16,11 +16,7 @@ export default function PostListItem({ post }) {
       </time>
 
       <h2 className={styles.title}>
-        <Link
-          href={uri}
-          title={title}
-          className={styles.link}
-        >
+        <Link href={uri} title={title} className={styles.link}>
           {title}
         </Link>
       </h2>
@@ -43,11 +39,7 @@ export default function PostListItem({ post }) {
         dangerouslySetInnerHTML={{ __html: excerpt }}
       />
 
-      <Link
-        href={uri}
-        title="Read more"
-        className={styles.readMore}
-      >
+      <Link href={uri} title="Read more" className={styles.readMore}>
         Read more
       </Link>
     </article>

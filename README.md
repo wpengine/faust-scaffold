@@ -26,29 +26,31 @@ At WP Engine, we have a strong community built around headless WordPress to supp
 - [WPGraphQL IDE](https://github.com/wp-graphql/wpgraphql-ide)
 - [WP GraphQL ACF](https://github.com/wp-graphql/wp-graphql-acf)
 
-
 # Documentation 🔎
 
->[!NOTE]
+> [!NOTE]
 > We are continuously adding new docs for [Faustjs.org](https://faustjs.org/docs) our new toolkit [https://github.com/wpengine/hwptoolkit/tree/main/docs](https://github.com/wpengine/hwptoolkit/tree/main/docs)
+
 ## Tutorials
 
 ### Faust
+
 - [Learn Faust.js](https://faustjs.org/docs/tutorial/learn-faust/)
 
 ### Platform
+
 - [WP Engine Smart Search for Headless WordPress with Next.js and MDX](https://wpengine.com/builders/wp-engine-smart-search-for-headless-wordpress-with-next-js-and-mdx/)
 - [Enhanced Runtime Logs on WP Engine’s Headless Platform](https://wpengine.com/builders/enhanced-runtime-logs-on-wp-engines-headless-platform/)
 - [WP Engine’s Node.js Edge Cache Purge Library for our Headless Platform](https://wpengine.com/builders/wp-engines-node-js-edge-cache-purge-library-for-the-headless-wordpress-platform/)
 - [How to Customize WPGraphQL Cache Keys](https://wpengine.com/builders/how-to-customize-wpgraphql-cache-keys/)
 - [On-Demand ISR Support for Next.js/Faust.js on WP Engine’s Headless Platform](https://wpengine.com/builders/on-demand-isr-support-for-next-js-faust-js-on-wp-engines-headless-platform/)
-- [ISR Support for Next.js/Faust.js  on WP Engine’s Atlas](https://wpengine.com/builders/isr-support-for-next-js-faust-js-on-wp-engines-atlas/)
-- [Sitemaps in headless WordPress with  WPGraphQL and Next.js App Router](https://wpengine.com/builders/sitemaps-in-headless-wordpress-with-wpgraphql-and-next-js-app-router/)
-
+- [ISR Support for Next.js/Faust.js on WP Engine’s Atlas](https://wpengine.com/builders/isr-support-for-next-js-faust-js-on-wp-engines-atlas/)
+- [Sitemaps in headless WordPress with WPGraphQL and Next.js App Router](https://wpengine.com/builders/sitemaps-in-headless-wordpress-with-wpgraphql-and-next-js-app-router/)
 
 ## How to Guides
 
 ### Faust
+
 - [Basic Setup](https://faustjs.org/docs/how-to/basic-setup/)
 - [Authentication](https://faustjs.org/docs/how-to/authentication/)
 - [Customize the Toolbar](https://faustjs.org/docs/how-to/customize-the-toolbar/)
@@ -63,15 +65,16 @@ At WP Engine, we have a strong community built around headless WordPress to supp
 - [Setup Persisted Queries](https://github.com/wpengine/hwptoolkit/blob/main/docs/how-to/nextjs-pages-router/enable-apq/index.md)
 
 ### WPGraphQL
+
 - [Performance](https://www.wpgraphql.com/docs/performance)
 - [Debugging](https://www.wpgraphql.com/docs/debugging)
 - [Security](https://www.wpgraphql.com/docs/security)
 - [Pagination](https://www.wpgraphql.com/2020/03/26/forward-and-backward-pagination-with-wpgraphql)
 
-
 ## References
 
 ### Faust
+
 - [Faust Plugin System Filters](https://faustjs.org/docs/reference/faust-plugin-system-filters/)
 - [fromThemeJson](https://faustjs.org/docs/reference/from-theme-json/)
 - [getNextServerSideProps](https://faustjs.org/docs/reference/get-next-server-side-props/)

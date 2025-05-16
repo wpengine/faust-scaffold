@@ -471,7 +471,6 @@ export default function Component(props) {
               </Link>
             </li>
             <li>
-              
               <Link
                 href="https://www.wpgraphql.com/2020/03/26/forward-and-backward-pagination-with-wpgraphql"
                 target="_blank"

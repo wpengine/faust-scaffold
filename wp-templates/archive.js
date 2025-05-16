@@ -10,7 +10,7 @@ import PostListItem from "../components/post-list-item";
 import { useFaustQuery, getNextStaticProps } from "@faustwp/core";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import styles from '../styles/archive.module.css';
+import styles from "../styles/archive.module.css";
 
 // Change to how many posts you want to load at once
 const BATCH_SIZE = 5;
@@ -52,7 +52,6 @@ export default function ArchivePage(props) {
   const router = useRouter();
   const [currentUri, setCurrentUri] = useState("");
 
-
   useEffect(() => {
     if (router.asPath) {
       const path = router.asPath.split("?")[0];
@@ -71,6 +70,9 @@ export default function ArchivePage(props) {
     fetchPolicy: "cache-and-network",
   });
 
+  const siteDataQuery = useFaustQuery(SITE_DATA_QUERY) || {};
+  const headerMenuDataQuery = useFaustQuery(HEADER_MENU_QUERY);
+
   if (loading && !data)
     return (
       <div className="container-main flex justify-center py-20">Loading...</div>
@@ -81,9 +83,6 @@ export default function ArchivePage(props) {
   if (!data?.nodeByUri?.posts?.nodes.length) {
     return <p>No posts have been published</p>;
   }
-
-  const siteDataQuery = useFaustQuery(SITE_DATA_QUERY) || {};
-  const headerMenuDataQuery = useFaustQuery(HEADER_MENU_QUERY);
 
   const siteData = siteDataQuery?.generalSettings || {};
   const menuItems = headerMenuDataQuery?.primaryMenuItems?.nodes || {

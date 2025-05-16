@@ -7,7 +7,6 @@ import { SITE_DATA_QUERY } from "../queries/SiteSettingsQuery";
 import { HEADER_MENU_QUERY } from "../queries/MenuQueries";
 import { useFaustQuery } from "@faustwp/core";
 
-
 const PAGE_QUERY = gql`
   query GetPage($databaseId: ID!, $asPreview: Boolean = false) {
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
@@ -28,7 +27,9 @@ export default function Component(props) {
   const headerMenuDataQuery = useFaustQuery(HEADER_MENU_QUERY) || {};
 
   const siteData = siteDataQuery?.generalSettings || {};
-  const menuItems = headerMenuDataQuery?.primaryMenuItems?.nodes || { nodes: [] };
+  const menuItems = headerMenuDataQuery?.primaryMenuItems?.nodes || {
+    nodes: [],
+  };
   const { title: siteTitle, description: siteDescription } = siteData;
   const { title, content } = contentQuery?.page || {};
 
@@ -63,9 +64,9 @@ Component.queries = [
     }),
   },
   {
-    query: SITE_DATA_QUERY
+    query: SITE_DATA_QUERY,
   },
   {
-    query: HEADER_MENU_QUERY
-  }
+    query: HEADER_MENU_QUERY,
+  },
 ];

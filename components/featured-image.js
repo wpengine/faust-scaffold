@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import styles from '../styles/featured-image.module.css';
+import styles from "../styles/featured-image.module.css";
 
 export function FeaturedImage({
   post,
@@ -15,11 +15,7 @@ export function FeaturedImage({
   return (
     <div className={styles.wrapper + " " + classNames}>
       {typeof uri === "string" && uri.trim() !== "" ? (
-        <Link
-          href={uri}
-          title={title}
-          className={styles.link}
-        >
+        <Link href={uri} title={title} className={styles.link}>
           <Image
             src={post.featuredImage.node.sourceUrl}
             alt={post.featuredImage.node.altText || post.title}

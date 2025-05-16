@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const HEADER_MENU_QUERY = gql`
   query GetHeaderMenu {

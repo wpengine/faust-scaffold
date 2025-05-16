@@ -1,10 +1,10 @@
-const { withFaust } = require('@faustwp/core');
+const { withFaust } = require("@faustwp/core");
 
 /**
  * @type {import('next').NextConfig}
  **/
 module.exports = withFaust({
   images: {
-	domains: ['faustexample.wpengine.com'],
+    domains: ["faustexample.wpengine.com"],
   },
 });

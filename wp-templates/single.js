@@ -32,7 +32,9 @@ export default function Component(props) {
   const siteDataQuery = useFaustQuery(SITE_DATA_QUERY);
   const headerMenuDataQuery = useFaustQuery(HEADER_MENU_QUERY);
 
-  const menuItems = headerMenuDataQuery?.primaryMenuItems?.nodes || { nodes: [] };
+  const menuItems = headerMenuDataQuery?.primaryMenuItems?.nodes || {
+    nodes: [],
+  };
   const { title: siteTitle, description: siteDescription } = siteDataQuery;
   const { title, content, date, author } = contentQuery?.post || {};
 
@@ -58,7 +60,6 @@ export default function Component(props) {
   );
 }
 
-
 Component.queries = [
   {
     query: POST_QUERY,
@@ -68,9 +69,9 @@ Component.queries = [
     }),
   },
   {
-    query: SITE_DATA_QUERY
+    query: SITE_DATA_QUERY,
   },
   {
-    query: HEADER_MENU_QUERY
-  }
+    query: HEADER_MENU_QUERY,
+  },
 ];

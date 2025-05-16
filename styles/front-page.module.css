@@ -13,7 +13,9 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .card {
-    transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition:
+      border-color 0.2s ease-in-out,
+      color 0.2s ease-in-out;
   }
 }
 
@@ -40,7 +42,7 @@
   border-radius: 0.5rem;
   line-height: 1.5;
 }
-.information h1{
+.information h1 {
   font-size: 2rem;
   margin: 1rem 0;
 }
@@ -57,7 +59,7 @@
   margin: 0;
 }
 .information ul {
-  margin: 0.5rem 0
+  margin: 0.5rem 0;
 }
 .information a {
   text-decoration: none;
