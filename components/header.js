@@ -1,11 +1,11 @@
 import { gql } from "@apollo/client";
 import Link from "next/link";
-import style from "./header.module.css";
+import style from "../styles/header.module.css";
 
 export default function Header({ siteTitle, siteDescription, menuItems }) {
   return (
     <header className={style.header}>
-      <div className="container">
+      <div className={`container ${style.container}`}>
         <Link href="/" className={style.brand}>
           <h2 className={style.siteTitle}>{siteTitle}</h2>
           <p className={style.siteDescription}>{siteDescription}</p>
