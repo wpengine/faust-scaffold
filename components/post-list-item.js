@@ -25,9 +25,11 @@ export default function PostListItem({ post }) {
         </Link>
       </h2>
 
-      <div className={styles.authorRow}>
-        <span>by {post.author.node.name}</span>
-      </div>
+      {post.author && post.author.node && (
+        <div className={styles.authorRow}>
+          <span>by {post.author.node.name}</span>
+        </div>
+      )}
 
       <FeaturedImage
         post={post}

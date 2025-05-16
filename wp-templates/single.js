@@ -49,7 +49,7 @@ export default function Component(props) {
       />
 
       <main className="container">
-        <EntryHeader title={title} date={date} author={author.node.name} />
+        <EntryHeader title={title} date={date} author={author?.node?.name} />
         <div dangerouslySetInnerHTML={{ __html: content }} />
       </main>
 

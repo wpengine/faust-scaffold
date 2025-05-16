@@ -1,5 +1,4 @@
-import { gql } from "@apollo/client";
-import Link from "next/link";
+import { gql, useQuery } from "@apollo/client";
 import Head from "next/head";
 import Header from "../components/header";
 import EntryHeader from "../components/entry-header";
@@ -8,16 +7,26 @@ import { SITE_DATA_QUERY } from "../queries/SiteSettingsQuery";
 import { HEADER_MENU_QUERY } from "../queries/MenuQueries";
 import { POST_LIST_FRAGMENT } from "../fragments/PostListFragment";
 import PostListItem from "../components/post-list-item";
-import { useFaustQuery } from "@faustwp/core";
+import { useFaustQuery, getNextStaticProps } from "@faustwp/core";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import styles from '../styles/archive.module.css';
+
+// Change to how many posts you want to load at once
+const BATCH_SIZE = 5;
 
 const ARCHIVE_QUERY = gql`
   ${POST_LIST_FRAGMENT}
-  query GetArchive($uri: String!) {
+  query GetArchive($uri: String!, $first: Int!, $after: String) {
     nodeByUri(uri: $uri) {
       archiveType: __typename
       ... on Category {
         name
-        posts {
+        posts(first: $first, after: $after) {
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
           nodes {
             ...PostListFragment
           }
@@ -25,7 +34,11 @@ const ARCHIVE_QUERY = gql`
       }
       ... on Tag {
         name
-        posts {
+        posts(first: $first, after: $after) {
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
           nodes {
             ...PostListFragment
           }
@@ -35,8 +48,40 @@ const ARCHIVE_QUERY = gql`
   }
 `;
 
-export default function Component(props) {
-  const contentQuery = useFaustQuery(ARCHIVE_QUERY) || {};
+export default function ArchivePage(props) {
+  const router = useRouter();
+  const [currentUri, setCurrentUri] = useState("");
+
+
+  useEffect(() => {
+    if (router.asPath) {
+      const path = router.asPath.split("?")[0];
+      setCurrentUri(path);
+    }
+  }, [router.asPath]);
+
+  const {
+    data,
+    loading = true,
+    error,
+    fetchMore,
+  } = useQuery(ARCHIVE_QUERY, {
+    variables: { first: BATCH_SIZE, after: null, uri: currentUri },
+    notifyOnNetworkStatusChange: true,
+    fetchPolicy: "cache-and-network",
+  });
+
+  if (loading && !data)
+    return (
+      <div className="container-main flex justify-center py-20">Loading...</div>
+    );
+
+  if (error) return <p>Error! {error.message}</p>;
+
+  if (!data?.nodeByUri?.posts?.nodes.length) {
+    return <p>No posts have been published</p>;
+  }
+
   const siteDataQuery = useFaustQuery(SITE_DATA_QUERY) || {};
   const headerMenuDataQuery = useFaustQuery(HEADER_MENU_QUERY);
 
@@ -45,17 +90,33 @@ export default function Component(props) {
     nodes: [],
   };
   const { title: siteTitle, description: siteDescription } = siteData;
-  const { archiveType, name, posts } = contentQuery?.nodeByUri || {};
+  const { archiveType, name, posts } = data?.nodeByUri || {};
 
-  // Helper function to format date as "Month Day, Year"
-  function formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString(undefined, {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
+  const loadMorePosts = async () => {
+    await fetchMore({
+      variables: {
+        first: BATCH_SIZE,
+        after: posts.pageInfo.endCursor,
+        uri: currentUri, // Use the dynamic URI
+      },
+      updateQuery: (prevResult, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return prevResult;
+
+        return {
+          nodeByUri: {
+            ...fetchMoreResult.nodeByUri,
+            posts: {
+              ...fetchMoreResult.nodeByUri.posts,
+              nodes: [
+                ...prevResult.nodeByUri.posts.nodes,
+                ...fetchMoreResult.nodeByUri.posts.nodes,
+              ],
+            },
+          },
+        };
+      },
     });
-  }
+  };
 
   return (
     <>
@@ -81,6 +142,11 @@ export default function Component(props) {
           ) : (
             <p>No posts found.</p>
           )}
+          {posts.pageInfo.hasNextPage && (
+            <div className={styles.loadMoreButtonContainer}>
+              <LoadMoreButton onClick={loadMorePosts} />
+            </div>
+          )}
         </div>
       </main>
 
@@ -89,16 +155,35 @@ export default function Component(props) {
   );
 }
 
-Component.queries = [
-  {
-    query: ARCHIVE_QUERY,
-    variables: ({}, ctx) => {
-      return {
-        uri: "/category/classic/", // @TODO Make this dynamic and add to getServerSideProps
-        asPreview: ctx?.asPreview || false,
-      };
-    },
-  },
+export async function getStaticProps(context) {
+  return getNextStaticProps(context, {
+    Page: ArchivePage,
+    revalidate: 60,
+  });
+}
+
+const LoadMoreButton = ({ onClick }) => {
+  const [loading, setLoading] = useState(false);
+
+  const handleLoadMore = async () => {
+    setLoading(true);
+    await onClick();
+    setLoading(false);
+  };
+
+  return (
+    <button
+      type="button"
+      className={styles.loadMoreButton}
+      onClick={handleLoadMore}
+      disabled={loading}
+    >
+      {loading ? <>Loading...</> : <>Load more</>}
+    </button>
+  );
+};
+
+ArchivePage.queries = [
   {
     query: SITE_DATA_QUERY,
   },
