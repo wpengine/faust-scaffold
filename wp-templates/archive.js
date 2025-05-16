@@ -132,7 +132,6 @@ export default function ArchivePage(props) {
       <main className="container mx-auto px-4">
         <EntryHeader title={`Archive for ${archiveType}: ${name}`} />
 
-        <h3 className="text-2xl font-semibold mb-6">Recent Posts</h3>
         <div className="space-y-12">
           {posts && posts.nodes && posts.nodes.length > 0 ? (
             posts.nodes.map((post) => (

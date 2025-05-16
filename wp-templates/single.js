@@ -28,14 +28,15 @@ export default function Component(props) {
     return <>Loading...</>;
   }
 
-  const contentQuery = useFaustQuery(POST_QUERY);
-  const siteDataQuery = useFaustQuery(SITE_DATA_QUERY);
-  const headerMenuDataQuery = useFaustQuery(HEADER_MENU_QUERY);
+  const contentQuery = useFaustQuery(POST_QUERY) || {};
+  const siteDataQuery = useFaustQuery(SITE_DATA_QUERY) || {};
+  const headerMenuDataQuery = useFaustQuery(HEADER_MENU_QUERY) || {};
 
+  const siteData = siteDataQuery?.generalSettings || {};
   const menuItems = headerMenuDataQuery?.primaryMenuItems?.nodes || {
     nodes: [],
   };
-  const { title: siteTitle, description: siteDescription } = siteDataQuery;
+  const { title: siteTitle, description: siteDescription } = siteData;
   const { title, content, date, author } = contentQuery?.post || {};
 
   return (

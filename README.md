@@ -6,6 +6,59 @@ This repository contains a starter kit to get you up and running quickly on [WP 
 
 To get started on WP Engine's Platform please follow the docs here [https://developers.wpengine.com/docs/atlas/getting-started/create-app/](https://developers.wpengine.com/docs/atlas/getting-started/create-app/)
 
+
+# Project Structure
+
+```
+faust-scaffold/
+├── components/
+├── fragments/
+├── pages/
+├── queries/
+├── styles/
+├── wp-templates/
+│   ├── archive.js # For your category/archive templates
+│   ├── front-page.js # Front page
+│   ├── index.js # Mapping for available templates
+│   ├── page.js # Single page
+│   └── single.js # Single post or singular
+├── DEVELOPMENT.md
+├── faust.config.js
+├── next.config.js
+├── package.json
+├── possibleTypes.json
+└── README.md
+└── screenshots
+```
+
+## Available Commands
+
+| Command         | Script                                 | Description                       |
+|-----------------|----------------------------------------|-----------------------------------|
+| `dev`           | `faust dev`                            | Start the development server      |
+| `build`         | `faust build`                          | Build the project for production  |
+| `generate`      | `faust generatePossibleTypes`          | Generate GraphQL possible types   |
+| `start`         | `faust start`                          | Start the production server       |
+| `format`        | `prettier . --write`                   | Format code with Prettier         |
+| `test:format`   | `prettier . --check`                   | Check code formatting             |
+
+## Screenshots
+
+
+<details>
+    <summary>View Screenshots</summary>
+
+![Front Page](screenshots/front-page.png)
+
+![Category Page](screenshots/category-page.png)
+
+![Single Page](screenshots/single-page.png)
+
+![Single Post](screenshots/single-post.png)
+
+</details>
+
+
 # Our Community 🩵
 
 At WP Engine, we have a strong community built around headless WordPress to support you with your journey.
