@@ -183,6 +183,14 @@ const LoadMoreButton = ({ onClick }) => {
 
 ArchivePage.queries = [
   {
+    query: ARCHIVE_QUERY,
+    variables: ({ uri }) => ({
+      uri,
+      first: BATCH_SIZE,
+      after: null,
+    }),
+  },
+  {
     query: SITE_DATA_QUERY,
   },
   {

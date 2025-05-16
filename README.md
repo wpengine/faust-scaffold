@@ -6,11 +6,9 @@ This repository contains a starter kit to get you up and running quickly on [WP 
 
 To get started on WP Engine's Platform please follow the docs here [https://developers.wpengine.com/docs/atlas/getting-started/create-app/](https://developers.wpengine.com/docs/atlas/getting-started/create-app/)
 
-
 # Project Structure
 
 ```
-faust-scaffold/
 ├── components/
 ├── fragments/
 ├── pages/
@@ -33,17 +31,16 @@ faust-scaffold/
 
 ## Available Commands
 
-| Command         | Script                                 | Description                       |
-|-----------------|----------------------------------------|-----------------------------------|
-| `dev`           | `faust dev`                            | Start the development server      |
-| `build`         | `faust build`                          | Build the project for production  |
-| `generate`      | `faust generatePossibleTypes`          | Generate GraphQL possible types   |
-| `start`         | `faust start`                          | Start the production server       |
-| `format`        | `prettier . --write`                   | Format code with Prettier         |
-| `test:format`   | `prettier . --check`                   | Check code formatting             |
+| Command       | Script                        | Description                      |
+| ------------- | ----------------------------- | -------------------------------- |
+| `dev`         | `faust dev`                   | Start the development server     |
+| `build`       | `faust build`                 | Build the project for production |
+| `generate`    | `faust generatePossibleTypes` | Generate GraphQL possible types  |
+| `start`       | `faust start`                 | Start the production server      |
+| `format`      | `prettier . --write`          | Format code with Prettier        |
+| `test:format` | `prettier . --check`          | Check code formatting            |
 
 ## Screenshots
-
 
 <details>
     <summary>View Screenshots</summary>
@@ -57,7 +54,6 @@ faust-scaffold/
 ![Single Post](screenshots/single-post.png)
 
 </details>
-
 
 # Our Community 🩵
 
