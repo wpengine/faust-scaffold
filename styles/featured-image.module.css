@@ -1,0 +1,20 @@
+.image {
+  object-fit: cover;
+}
+
+.link {
+  opacity: 0.8;
+  transition-duration: 150ms;
+  transition-property: opacity;
+  transition-timing-function: ease-in-out;
+}
+
+.link:hover {
+  opacity: 1;
+}
+
+.wrapper {
+  height: 12rem;
+  margin: 2.25rem 0;
+  position: relative;
+}

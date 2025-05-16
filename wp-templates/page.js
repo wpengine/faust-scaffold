@@ -3,6 +3,18 @@ import Head from "next/head";
 import EntryHeader from "../components/entry-header";
 import Footer from "../components/footer";
 import Header from "../components/header";
+import { SITE_DATA_QUERY } from "../queries/SiteSettingsQuery";
+import { HEADER_MENU_QUERY } from "../queries/MenuQueries";
+import { useFaustQuery } from "@faustwp/core";
+
+const PAGE_QUERY = gql`
+  query GetPage($databaseId: ID!, $asPreview: Boolean = false) {
+    page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
+      title
+      content
+    }
+  }
+`;
 
 export default function Component(props) {
   // Loading state for previews
@@ -10,10 +22,16 @@ export default function Component(props) {
     return <>Loading...</>;
   }
 
-  const { title: siteTitle, description: siteDescription } =
-    props.data.generalSettings;
-  const menuItems = props.data.primaryMenuItems.nodes;
-  const { title, content } = props.data.page;
+  const contentQuery = useFaustQuery(PAGE_QUERY) || {};
+  const siteDataQuery = useFaustQuery(SITE_DATA_QUERY) || {};
+  const headerMenuDataQuery = useFaustQuery(HEADER_MENU_QUERY) || {};
+
+  const siteData = siteDataQuery?.generalSettings || {};
+  const menuItems = headerMenuDataQuery?.primaryMenuItems?.nodes || {
+    nodes: [],
+  };
+  const { title: siteTitle, description: siteDescription } = siteData;
+  const { title, content } = contentQuery?.page || {};
 
   return (
     <>
@@ -37,20 +55,18 @@ export default function Component(props) {
   );
 }
 
-Component.variables = ({ databaseId }, ctx) => {
-  return {
-    databaseId,
-    asPreview: ctx?.asPreview,
-  };
-};
-
-Component.query = gql`
-  ${Header.fragments.entry}
-  query GetPage($databaseId: ID!, $asPreview: Boolean = false) {
-    page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
-      title
-      content
-    }
-    ...HeaderFragment
-  }
-`;
+Component.queries = [
+  {
+    query: PAGE_QUERY,
+    variables: ({ databaseId }, ctx) => ({
+      databaseId,
+      asPreview: ctx?.asPreview,
+    }),
+  },
+  {
+    query: SITE_DATA_QUERY,
+  },
+  {
+    query: HEADER_MENU_QUERY,
+  },
+];

@@ -4,6 +4,12 @@
   gap: 2rem;
 }
 
+@media (max-width: 600px) {
+  .cardGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .card {
   padding: 1.5rem;
   border: 1px solid #e1e1e1;
@@ -13,7 +19,9 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .card {
-    transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition:
+      border-color 0.2s ease-in-out,
+      color 0.2s ease-in-out;
   }
 }
 
@@ -31,4 +39,41 @@
 .card p {
   font-size: 1.25rem;
   margin: 0;
+}
+
+.information {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 1px solid #e1e1e1;
+  border-radius: 0.5rem;
+  line-height: 1.5;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+.information h1 {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+.information h2 {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+.information h3 {
+  font-size: 1.25rem;
+  margin: 1rem 0.5rem;
+}
+.information p {
+  font-size: 1.25rem;
+  margin: 0;
+}
+.information ul {
+  margin: 0.5rem 0;
+}
+.information a {
+  text-decoration: none;
+  color: royalblue;
+}
+.information a:hover {
+  text-decoration: underline;
 }

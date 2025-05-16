@@ -1,4 +1,4 @@
-import { getSitemapProps } from '@faustwp/core';
+import { getSitemapProps } from "@faustwp/core";
 
 export default function Sitemap() {}
 
