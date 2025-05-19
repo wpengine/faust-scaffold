@@ -174,15 +174,6 @@ export default function Component(props) {
             </li>
             <li>
               <Link
-                href="https://github.com/wpengine/hwptoolkit"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                HWP Toolkit
-              </Link>
-            </li>
-            <li>
-              <Link
                 href="https://www.wpgraphql.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -210,472 +201,42 @@ export default function Component(props) {
             </li>
             <li>
               <Link
-                href="https://github.com/wp-graphql/wp-graphql-acf"
+                href="https://github.com/wpengine/hwptoolkit"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                WP GraphQL ACF
+                HWP Toolkit
               </Link>
             </li>
           </ul>
 
           <h1>Documentation 🔎</h1>
-          <div className="note">
-            <p>
-              We are continuously adding new docs for{" "}
-              <Link
-                href="https://faustjs.org/docs"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Faustjs.org
-              </Link>{" "}
-              our new toolkit{" "}
-              <Link
-                href="https://github.com/wpengine/hwptoolkit/tree/main/docs"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                https://github.com/wpengine/hwptoolkit/tree/main/docs
-              </Link>
-            </p>
-          </div>
-
-          <h2>Tutorials</h2>
-
-          <h3>Faust</h3>
           <ul>
             <li>
               <Link
-                href="https://faustjs.org/docs/tutorial/learn-faust/"
+                href="https://faustjs.org/docs/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Learn Faust.js
-              </Link>
-            </li>
-          </ul>
-
-          <h3>Platform</h3>
-          <ul>
-            <li>
-              <Link
-                href="https://wpengine.com/builders/wp-engine-smart-search-for-headless-wordpress-with-next-js-and-mdx/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                WP Engine Smart Search for Headless WordPress with Next.js and
-                MDX
+                Faust.js Documentation
               </Link>
             </li>
             <li>
               <Link
-                href="https://wpengine.com/builders/enhanced-runtime-logs-on-wp-engines-headless-platform/"
+                href="https://developers.wpengine.com/docs/atlas/overview/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Enhanced Runtime Logs on WP Engine's Headless Platform
+                Headless Platform Documentation
               </Link>
             </li>
             <li>
               <Link
-                href="https://wpengine.com/builders/wp-engines-node-js-edge-cache-purge-library-for-the-headless-wordpress-platform/"
+                href="https://www.wpgraphql.com/docs/introduction"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                WP Engine's Node.js Edge Cache Purge Library for our Headless
-                Platform
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://wpengine.com/builders/how-to-customize-wpgraphql-cache-keys/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                How to Customize WPGraphQL Cache Keys
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://wpengine.com/builders/on-demand-isr-support-for-next-js-faust-js-on-wp-engines-headless-platform/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                On-Demand ISR Support for Next.js/Faust.js on WP Engine's
-                Headless Platform
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://wpengine.com/builders/isr-support-for-next-js-faust-js-on-wp-engines-atlas/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                ISR Support for Next.js/Faust.js on WP Engine's Atlas
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://wpengine.com/builders/sitemaps-in-headless-wordpress-with-wpgraphql-and-next-js-app-router/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Sitemaps in headless WordPress with WPGraphQL and Next.js App
-                Router
-              </Link>
-            </li>
-          </ul>
-
-          <h2>How to Guides</h2>
-
-          <h3>Faust</h3>
-          <ul>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/how-to/basic-setup/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Basic Setup
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/how-to/authentication/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Authentication
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/how-to/customize-the-toolbar/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Customize the Toolbar
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/how-to/generate-types-with-graphql-codegen/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Generate types with GraphQL Codegen
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/how-to/rendering-blocks/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Rendering Blocks
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/how-to/custom-blocks/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Customize Rendering Blocks
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/how-to/post-previews/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Post Previews
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/how-to/sitemaps/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Sitemaps
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/how-to/create-a-plugin/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Create a plugin
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/how-to/use-wpgraphql-smart-cache/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Using WPGraphQL Smart Cache Network Caching
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/how-to/setup-cpt-in-faustjs/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Set up Custom Post Types (CPTs) in Faust
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://github.com/wpengine/hwptoolkit/blob/main/docs/how-to/nextjs-pages-router/enable-apq/index.md"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Setup Persisted Queries
-              </Link>
-            </li>
-          </ul>
-
-          <h3>WPGraphQL</h3>
-          <ul>
-            <li>
-              <Link
-                href="https://www.wpgraphql.com/docs/performance"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Performance
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://www.wpgraphql.com/docs/debugging"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Debugging
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://www.wpgraphql.com/docs/security"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Security
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://www.wpgraphql.com/2020/03/26/forward-and-backward-pagination-with-wpgraphql"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Pagination
-              </Link>
-            </li>
-          </ul>
-
-          <h2>References</h2>
-
-          <h3>Faust</h3>
-          <ul>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/reference/faust-plugin-system-filters/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Faust Plugin System Filters
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/reference/from-theme-json/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                fromThemeJson
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/reference/get-next-server-side-props/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                getNextServerSideProps
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/reference/get-next-static-props/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                getNextStaticProps
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/reference/get-site-map-props/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                getSiteMapProps
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/reference/get-styles/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                getStyles
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/reference/use-auth/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                useAuth
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/reference/use-blocks-theme/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                useBlocksTheme
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/reference/use-login/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                useLogin
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/reference/use-logout/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                useLogout
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/reference/with-faust/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                withFaust
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/reference/wordpress-blocks-provider/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                WordPressBlocksProvider
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/reference/wordpress-blocks-viewer/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                WordPressBlocksViewer
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/reference/blockset/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                blockset
-              </Link>
-            </li>
-          </ul>
-
-          <h2>Explanation</h2>
-          <ul>
-            <li>
-              <Link
-                href="https://faustjs.org/docs/explanation/seed-query/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Seed Query
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://github.com/wpengine/hwptoolkit/blob/main/docs/explanation/get-vs-post.md"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GET VS POST
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://github.com/wpengine/hwptoolkit/blob/main/docs/explanation/graphql-endpoints.md"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GraphQL Endpoints
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://github.com/wpengine/hwptoolkit/blob/main/docs/explanation/headless-authentication.md"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Headless Authentication
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://github.com/wpengine/hwptoolkit/blob/main/docs/explanation/rendering-options.md"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Rendering Options
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://github.com/wpengine/hwptoolkit/blob/main/docs/explanation/routing.md"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Routing in Headless WordPress
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://github.com/wpengine/hwptoolkit/blob/main/docs/explanation/sitemaps.md"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Sitemaps
+                WPGraphQL Documentation
               </Link>
             </li>
           </ul>
