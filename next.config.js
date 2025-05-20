@@ -7,4 +7,5 @@ module.exports = withFaust({
   images: {
     domains: ["faustexample.wpengine.com"],
   },
+  trailingSlash: true,
 });
