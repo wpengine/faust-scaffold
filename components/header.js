@@ -13,7 +13,7 @@ export default function Header({ siteTitle, siteDescription, menuItems }) {
 
         <nav className={style.nav}>
           <ul>
-            {menuItems.map((item) => (
+            {(Array.isArray(menuItems) ? menuItems : []).map((item) => (
               <li key={item.id}>
                 <Link href={item.uri}>{item.label}</Link>
               </li>

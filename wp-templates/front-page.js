@@ -6,19 +6,21 @@ import Footer from "../components/footer";
 import style from "../styles/front-page.module.css";
 import { SITE_DATA_QUERY } from "../queries/SiteSettingsQuery";
 import { HEADER_MENU_QUERY } from "../queries/MenuQueries";
-import { useFaustQuery } from "@faustwp/core";
+import { useQuery } from "@apollo/client";
+import { getNextStaticProps } from "@faustwp/core";
 
-export default function Component(props) {
+export default function FrontPage(props) {
   // Loading state for previews
   if (props.loading) {
     return <>Loading...</>;
   }
 
-  const siteDataQuery = useFaustQuery(SITE_DATA_QUERY) || {};
-  const headerMenuDataQuery = useFaustQuery(HEADER_MENU_QUERY);
 
-  const siteData = siteDataQuery?.generalSettings || {};
-  const menuItems = headerMenuDataQuery?.primaryMenuItems?.nodes || {
+  const siteDataQuery = useQuery(SITE_DATA_QUERY) || {};
+  const headerMenuDataQuery = useQuery(HEADER_MENU_QUERY) || {};
+
+  const siteData = siteDataQuery?.data?.generalSettings || {};
+  const menuItems = headerMenuDataQuery?.data?.primaryMenuItems?.nodes || {
     nodes: [],
   };
   const { title: siteTitle, description: siteDescription } = siteData;
@@ -248,7 +250,14 @@ export default function Component(props) {
   );
 }
 
-Component.queries = [
+export async function getStaticProps(context) {
+  return getNextStaticProps(context, {
+    Page: FrontPage,
+    revalidate: 60,
+  });
+}
+
+FrontPage.queries = [
   {
     query: SITE_DATA_QUERY,
   },

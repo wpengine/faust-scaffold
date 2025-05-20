@@ -1,11 +1,11 @@
-import { gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import Head from "next/head";
 import EntryHeader from "../components/entry-header";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import { SITE_DATA_QUERY } from "../queries/SiteSettingsQuery";
 import { HEADER_MENU_QUERY } from "../queries/MenuQueries";
-import { useFaustQuery } from "@faustwp/core";
+import { getNextStaticProps } from "@faustwp/core";
 
 const PAGE_QUERY = gql`
   query GetPage($databaseId: ID!, $asPreview: Boolean = false) {
@@ -16,22 +16,48 @@ const PAGE_QUERY = gql`
   }
 `;
 
-export default function Component(props) {
-  // Loading state for previews
+export default function SinglePage(props) {
   if (props.loading) {
     return <>Loading...</>;
   }
 
-  const contentQuery = useFaustQuery(PAGE_QUERY) || {};
-  const siteDataQuery = useFaustQuery(SITE_DATA_QUERY) || {};
-  const headerMenuDataQuery = useFaustQuery(HEADER_MENU_QUERY) || {};
+  const databaseId = props.__SEED_NODE__.databaseId;
+  const asPreview = props.__SEED_NODE__.asPreview;
 
-  const siteData = siteDataQuery?.generalSettings || {};
-  const menuItems = headerMenuDataQuery?.primaryMenuItems?.nodes || {
+  const {
+    data,
+    loading = true,
+    error,
+  } = useQuery(PAGE_QUERY, {
+    variables: {
+      databaseId: databaseId,
+      asPreview: asPreview,
+    },
+    notifyOnNetworkStatusChange: true,
+    fetchPolicy: "cache-and-network",
+  });
+
+  const siteDataQuery = useQuery(SITE_DATA_QUERY) || {};
+  const headerMenuDataQuery = useQuery(HEADER_MENU_QUERY) || {};
+
+  if (loading && !data)
+    return (
+      <div className="container-main flex justify-center py-20">Loading...</div>
+    );
+
+  if (error) return <p>Error! {error.message}</p>;
+
+  if (!data?.page) {
+    return <p>No pages have been published</p>;
+  }
+
+
+  const siteData = siteDataQuery?.data?.generalSettings || {};
+  const menuItems = headerMenuDataQuery?.data?.primaryMenuItems?.nodes || {
     nodes: [],
   };
   const { title: siteTitle, description: siteDescription } = siteData;
-  const { title, content } = contentQuery?.page || {};
+  const { title, content } = data?.page || {};
 
   return (
     <>
@@ -55,7 +81,8 @@ export default function Component(props) {
   );
 }
 
-Component.queries = [
+
+SinglePage.queries = [
   {
     query: PAGE_QUERY,
     variables: ({ databaseId }, ctx) => ({
