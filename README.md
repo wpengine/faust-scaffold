@@ -8,18 +8,18 @@ To get started on WP Engine's Platform please follow the docs here [https://deve
 
 # Project Structure
 
-```
+```bash
 ├── components/
 ├── fragments/
 ├── pages/
 ├── queries/
 ├── styles/
 ├── wp-templates/
-│   ├── archive.js # For your category/archive templates
-│   ├── front-page.js # Front page
-│   ├── index.js # Mapping for available templates
-│   ├── page.js # Single page
-│   └── single.js # Single post or singular
+│   ├── archive.js          # For your category/archive templates
+│   ├── front-page.js       # Front page
+│   ├── index.js            # Mapping for available templates
+│   ├── page.js             # Single page
+│   └── single.js           # Single post or singular
 ├── DEVELOPMENT.md
 ├── faust.config.js
 ├── next.config.js
