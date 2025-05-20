@@ -49,16 +49,7 @@ const ARCHIVE_QUERY = gql`
 `;
 
 export default function ArchivePage(props) {
-  const router = useRouter();
-  const [currentUri, setCurrentUri] = useState("");
-
-  useEffect(() => {
-    if (router.asPath) {
-      const path = router.asPath.split("?")[0];
-      setCurrentUri(path);
-    }
-  }, [router.asPath]);
-
+  const currentUri = props.__SEED_NODE__.uri;
   const {
     data,
     loading = true,
