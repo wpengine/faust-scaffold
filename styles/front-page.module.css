@@ -51,17 +51,9 @@
   overflow-wrap: break-word;
   white-space: normal;
 }
-.information h1 {
+.information h1, .information h2 {
   font-size: 2rem;
   margin: 1rem 0;
-}
-.information h2 {
-  font-size: 1.5rem;
-  margin: 1rem 0;
-}
-.information h3 {
-  font-size: 1.25rem;
-  margin: 1rem 0.5rem;
 }
 .information p {
   font-size: 1.25rem;
