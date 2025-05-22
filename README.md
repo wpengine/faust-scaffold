@@ -55,7 +55,7 @@ To get started on WP Engine's Platform please follow the docs here [https://deve
 
 </details>
 
-# Our Community 🩵
+## Our Community 🩵
 
 At WP Engine, we have a strong community built around headless WordPress to support you with your journey.
 
