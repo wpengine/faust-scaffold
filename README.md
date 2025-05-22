@@ -6,7 +6,7 @@ This repository contains a starter kit to get you up and running quickly on [WP 
 
 To get started on WP Engine's Platform please follow the docs here [https://developers.wpengine.com/docs/atlas/getting-started/create-app/](https://developers.wpengine.com/docs/atlas/getting-started/create-app/)
 
-# Project Structure
+## Project Structure
 
 ```bash
 ├── components/
