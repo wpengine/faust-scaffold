@@ -74,7 +74,7 @@ At WP Engine, we have a strong community built around headless WordPress to supp
 - [WPGraphQL IDE](https://github.com/wp-graphql/wpgraphql-ide)
 - [HWP Toolkit](https://github.com/wpengine/hwptoolkit)
 
-# Documentation 🔎
+## Documentation 🔎
 
 > [!NOTE]
 > We are continuously adding new docs for [Faustjs.org](https://faustjs.org/docs)
