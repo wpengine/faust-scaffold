@@ -84,7 +84,7 @@ At WP Engine, we have a strong community built around headless WordPress to supp
 - [WPGraphQL Documentation](https://developers.wpengine.com/docs/atlas/overview/)
 
 
-# Contributions
+## Contributions
 
 ## Contributor License Agreement
 
