@@ -86,7 +86,7 @@ At WP Engine, we have a strong community built around headless WordPress to supp
 
 # Contributions
 
-# Contributor License Agreement
+## Contributor License Agreement
 
 All external contributors to WP Engine products must have a signed Contributor License Agreement (CLA) in place before the contribution may be accepted into any WP Engine codebase.
 
