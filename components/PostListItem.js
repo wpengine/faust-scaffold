@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FeaturedImage } from "./featured-image";
+import { FeaturedImage } from "./FeaturedImage";
 import styles from "../styles/post-list-item.module.css";
 
 export default function PostListItem({ post }) {
