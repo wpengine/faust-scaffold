@@ -1,0 +1,21 @@
+.loadMoreButtonContainer {
+  margin: 2rem auto;
+  display: flex;
+  justify-content: center;
+}
+.loadMoreButton {
+  align-items: center;
+  background-color: royalblue;
+  border-radius: 0.125rem;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  text-transform: uppercase;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.loadMoreButton:hover {
+  background-color: darkblue;
+}

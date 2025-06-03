@@ -1,19 +1,63 @@
-import { gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import Head from "next/head";
-import EntryHeader from "../components/entry-header";
-import Footer from "../components/footer";
-import Header from "../components/header";
+import EntryHeader from "../components/EntryHeader";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import { SITE_DATA_QUERY } from "../queries/SiteSettingsQuery";
+import { HEADER_MENU_QUERY } from "../queries/MenuQueries";
+import { getNextStaticProps } from "@faustwp/core";
 
-export default function Component(props) {
-  // Loading state for previews
+const PAGE_QUERY = gql`
+  query GetPage($databaseId: ID!, $asPreview: Boolean = false) {
+    page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
+      title
+      content
+    }
+  }
+`;
+
+export default function SinglePage(props) {
   if (props.loading) {
     return <>Loading...</>;
   }
 
-  const { title: siteTitle, description: siteDescription } =
-    props.data.generalSettings;
-  const menuItems = props.data.primaryMenuItems.nodes;
-  const { title, content } = props.data.page;
+  const databaseId = props.__SEED_NODE__.databaseId;
+  const asPreview = props.__SEED_NODE__.asPreview;
+
+  const {
+    data,
+    loading = true,
+    error,
+  } = useQuery(PAGE_QUERY, {
+    variables: {
+      databaseId: databaseId,
+      asPreview: asPreview,
+    },
+    notifyOnNetworkStatusChange: true,
+    fetchPolicy: "cache-and-network",
+  });
+
+  const siteDataQuery = useQuery(SITE_DATA_QUERY) || {};
+  const headerMenuDataQuery = useQuery(HEADER_MENU_QUERY) || {};
+
+  if (loading && !data)
+    return (
+      <div className="container-main flex justify-center py-20">Loading...</div>
+    );
+
+  if (error) return <p>Error! {error.message}</p>;
+
+  if (!data?.page) {
+    return <p>No pages have been published</p>;
+  }
+
+
+  const siteData = siteDataQuery?.data?.generalSettings || {};
+  const menuItems = headerMenuDataQuery?.data?.primaryMenuItems?.nodes || {
+    nodes: [],
+  };
+  const { title: siteTitle, description: siteDescription } = siteData;
+  const { title, content } = data?.page || {};
 
   return (
     <>
@@ -37,20 +81,19 @@ export default function Component(props) {
   );
 }
 
-Component.variables = ({ databaseId }, ctx) => {
-  return {
-    databaseId,
-    asPreview: ctx?.asPreview,
-  };
-};
 
-Component.query = gql`
-  ${Header.fragments.entry}
-  query GetPage($databaseId: ID!, $asPreview: Boolean = false) {
-    page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
-      title
-      content
-    }
-    ...HeaderFragment
-  }
-`;
+SinglePage.queries = [
+  {
+    query: PAGE_QUERY,
+    variables: ({ databaseId }, ctx) => ({
+      databaseId,
+      asPreview: ctx?.asPreview,
+    }),
+  },
+  {
+    query: SITE_DATA_QUERY,
+  },
+  {
+    query: HEADER_MENU_QUERY,
+  },
+];

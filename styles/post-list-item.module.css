@@ -1,0 +1,42 @@
+.article {
+  background-color: #f9fafb;
+  border-radius: 0.5rem;
+  box-shadow:
+    0 1px 2px 0 rgb(0 0 0 / 0.05),
+    0 1.5px 6px 0 rgb(0 0 0 / 0.05);
+  display: block;
+  margin: 3rem auto;
+  padding: 2.5rem 1.5rem;
+  padding-bottom: 1.5rem;
+  width: 100%;
+}
+.authorRow {
+  align-items: center;
+  margin-right: 1rem;
+}
+.excerpt {
+  margin: 1rem 0 0.5rem;
+}
+.link {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.link:hover {
+  text-decoration: underline;
+}
+.readMore {
+  color: royalblue;
+  margin-top: 1rem;
+  text-decoration: none;
+}
+.readMore:hover {
+  text-decoration: underline;
+}
+.time {
+  color: #4b5563;
+  font-size: 0.875rem;
+}
+.title {
+  margin-top: 0.75rem;
+}

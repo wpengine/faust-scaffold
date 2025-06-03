@@ -1,4 +1,4 @@
-import style from "./entry-header.module.css";
+import style from "../styles/entry-header.module.css";
 
 export default function EntryHeader({ title, date, author }) {
   return (
